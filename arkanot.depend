@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1660090780 source:c:\users\felix\desktop\arkanot\main.cpp
+	"Juego.h"
+
+1733104622 c:\users\felix\desktop\arkanot\include\juego.h
+	"Pelota.h"
+	"Barra.h"
+	"Cancha.h"
+	"Obstaculo.h"
+	"Logica.h"
+
+1660086934 c:\users\felix\desktop\arkanot\include\pelota.h
+
+1732846634 c:\users\felix\desktop\arkanot\include\barra.h
+
+1732770052 c:\users\felix\desktop\arkanot\include\cancha.h
+
+1732821941 c:\users\felix\desktop\arkanot\include\obstaculo.h
+
+1733189153 c:\users\felix\desktop\arkanot\include\logica.h
+	"Pelota.h"
+	"Barra.h"
+	"Obstaculo.h"
+
+1732846794 source:c:\users\felix\desktop\arkanot\src\barra.cpp
+	"Barra.h"
+	<iostream>
+	<windows.h>
+
+1732776250 source:c:\users\felix\desktop\arkanot\src\cancha.cpp
+	"Cancha.h"
+	<iostream>
+
+1732770207 source:c:\users\felix\desktop\arkanot\src\inputs.cpp
+	"Inputs.h"
+	<iostream>
+	<conio.h>
+
+1732768952 c:\users\felix\desktop\arkanot\include\inputs.h
+
+1733189340 source:c:\users\felix\desktop\arkanot\src\juego.cpp
+	"Juego.h"
+	<iostream>
+	<conio.h>
+
+1733189305 source:c:\users\felix\desktop\arkanot\src\logica.cpp
+	"Logica.h"
+	<iostream>
+	<windows.h>
+
+1732845639 source:c:\users\felix\desktop\arkanot\src\obstaculo.cpp
+	"Obstaculo.h"
+	<iostream>
+	<windows.h>
+
+1732822401 source:c:\users\felix\desktop\arkanot\src\pelota.cpp
+	"Pelota.h"
+	<iostream>
+	<windows.h>
+

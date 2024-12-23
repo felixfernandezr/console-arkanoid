@@ -8,13 +8,16 @@ class JuegoManager {
     public:
         JuegoManager();
         void jugar();
-        void mostrarMenuInicio();
-        void mostrarPantallaFin();
+        void mostrarMenuInicio(void);
+        void mostrarPantallaFin(void);
         void cambiarEstado(EstadoJuego nuevoEstado);
+        void inicializarNivel(void);
 
     private:
         Juego juego;
         EstadoJuego estadoActual;
+        Niveles niveles;
+        unsigned int nivelActual;
         bool gameOver;
 };
 

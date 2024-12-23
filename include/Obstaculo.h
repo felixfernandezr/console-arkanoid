@@ -13,14 +13,12 @@ class Obstaculo
         unsigned int filas;
         unsigned int columnas;
         unsigned int ancho;
-        Niveles niveles;
-
         std::vector<std::vector<unsigned int>> grilla;
 
     public:
-        bool checkColision(int pelotaX, int pelotaY);
+        bool checkColision(unsigned int pelotaX, unsigned int pelotaY);
         void dibujar(void);
-        bool checkNivelCompleo(void);
+        bool checkNivelCompleto(void);
         void inicializarObstaculos(std::vector<std::vector<unsigned int>> nivel);
 
 };

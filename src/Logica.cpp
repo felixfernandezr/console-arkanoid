@@ -7,43 +7,41 @@ Logica::Logica() {}
 bool Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record)
 {
     // Checking for obstacle collision
-    if(obstaculos->checkColision(pelota->posicion[0], pelota->posicion[1]))
+    if(obstaculos->checkColision(pelota->posicion[0], pelota->posicion[1])) // Sending ball x,y using a duple Dupla (check Pelota.h)
     {
-        pelota->rebotarY();
-        *puntaje += 10;
-        if(*puntaje > *record)
+        pelota->rebotarY(); // If collision is true change direction in Y axis (*-1)
+        *puntaje += 10; // Add to score
+        if(*puntaje > *record) // Check if record
             {
                 *record = *puntaje;
             }
     }
 
-
     // Colission Logic
     // Walls
-    if(pelota->posicion[1]==0)
+    if(pelota->posicion[1]==0) // If ball Y position is 0 (actual console screen boundary)
     {
-        pelota->rebotarY();
+        pelota->rebotarY(); // Change ball Y direction (*-1)
     }
-    if(pelota->posicion[0]==0 || pelota->posicion[0]==59)
+    if(pelota->posicion[0]==0 || pelota->posicion[0]==59) // if ball X position is 0 or 59
     {
-        pelota->rebotarX();
+        pelota->rebotarX(); // Change ball X direction (*-1)
     }
 
     // Bar
-    if(pelota->posicion[1]==barra->posicion[1])
+    if(pelota->posicion[1]==barra->posicion[1]) // If ball Y position == bar Y position
     {
-        if(pelota->posicion[0] >= barra->posicion[0] && pelota->posicion[0] < barra->posicion[0] + barra->largo)
+        // And if ball position is in between bar start and end position (bar X position + bar length)
+        if( (pelota->posicion[0] >= barra->posicion[0]) && (pelota->posicion[0] < barra->posicion[0] + barra->largo) )
         {
-            pelota->rebotarY();
+            pelota->rebotarY(); // Change ball Y direction
         }
     }
 
-    // Game Over
-    if(pelota->posicion[1]==27)
+    // If ball Y position is more than bar Y position (24) or Level is Completed. End loop
+    if((pelota->posicion[1]==27) || (obstaculos->checkNivelCompleto()))
     {
-        pelota->reiniciar();
-        *puntaje = 0;
-        return true; // Game over signal
+        return true; // Ending function with true
     }
 
     return false;

@@ -2,7 +2,7 @@
 
 int main()
 {
-    JuegoManager juegoManager;
+    JuegoManager juegoManager; // Creating JuegoManager object, call to jugar function
     juegoManager.jugar();
 
     return 0;

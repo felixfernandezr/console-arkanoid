@@ -5,7 +5,9 @@
 enum class EstadoJuego {
     MenuInico,
     Play,
-    PantallaFin
+    GameOver,
+    NivelCompleto,
+    FinDelJuego,
 };
 
 #endif // ESTADOJUEGO_H_INCLUDED

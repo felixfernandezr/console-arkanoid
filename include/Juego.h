@@ -20,8 +20,10 @@ class Juego
         Niveles niveles;
         unsigned int puntaje;
         unsigned int record;
+        bool finDelJuego;
 
         void juegoLoop();
+        void inputHandler(char input);
 };
 
 #endif // JUEGO_H_INCLUDED

@@ -8,10 +8,14 @@ class JuegoManager {
     public:
         JuegoManager();
         void jugar();
-        void mostrarMenuInicio(void);
-        void mostrarPantallaFin(void);
-        void cambiarEstado(EstadoJuego nuevoEstado);
         void inicializarNivel(void);
+        void mostrarMenuInicio(void);
+        void mostrarNivelCompleto(void);
+        void mostrarGameOver(void);
+        void mostrarPantallaFin(void);
+        void mostrarCreditos(void);
+        void cambiarEstado(EstadoJuego nuevoEstado);
+        void resetValores(void);
 
     private:
         Juego juego;

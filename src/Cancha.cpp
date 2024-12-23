@@ -9,20 +9,20 @@ Cancha::Cancha()
 
 void Cancha::delinear()
 {
-    for(int i = 0; i < ancho + 2; i++)
+    for(unsigned int i = 0; i < ancho + 2; i++)
         std::cout << '#';
     std::cout << std::endl;
 
-    for(int i = 0; i < alto; i++)
+    for(unsigned int i = 0; i < alto; i++)
     {
         std::cout << '#';
-        for(int j = 0; j < ancho; j++)
+        for(unsigned int j = 0; j < ancho; j++)
         {
             std::cout << ' ';
         }
         std::cout << '#' << std::endl;
     }
 
-    for(int i = 0; i < ancho + 2; i++)
+    for(unsigned int i = 0; i < ancho + 2; i++)
         std::cout << '#';
 }

@@ -1,8 +1,9 @@
-#include "Juego.h"
+#include "JuegoManager.h"
 
 int main()
 {
-    Juego j;
-    j.jugar();
+    JuegoManager juegoManager;
+    juegoManager.jugar();
+
     return 0;
 }

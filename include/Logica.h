@@ -11,7 +11,7 @@ class Logica
         unsigned int* puntaje;
         unsigned int* record;
 
-        void juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record);
+        bool juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record);
 };
 
 #endif // LOGICA_H_INCLUDED

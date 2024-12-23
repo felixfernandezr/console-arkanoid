@@ -4,7 +4,7 @@
 
 Logica::Logica() {}
 
-void Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record)
+bool Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record)
 {
     // Checking for obstacle collision
     if(obstaculos->checkColision(pelota->posicion[0], pelota->posicion[1]))
@@ -43,5 +43,8 @@ void Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, un
     {
         pelota->reiniciar();
         *puntaje = 0;
+        return true; // Game over signal
     }
+
+    return false;
 }

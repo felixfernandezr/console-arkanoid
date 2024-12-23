@@ -58,15 +58,16 @@
 	<iostream>
 	<windows.h>
 
-1660090780 source:c:\users\felix\desktop\gh\arkanot\main.cpp
-	"Juego.h"
+1733255355 source:c:\users\felix\desktop\gh\arkanot\main.cpp
+	"JuegoManager.h"
 
-1733104622 c:\users\felix\desktop\gh\arkanot\include\juego.h
+1733271175 c:\users\felix\desktop\gh\arkanot\include\juego.h
 	"Pelota.h"
 	"Barra.h"
 	"Cancha.h"
 	"Obstaculo.h"
 	"Logica.h"
+	"Niveles.h"
 
 1733192511 c:\users\felix\desktop\gh\arkanot\include\pelota.h
 	"Dupla.h"
@@ -79,10 +80,11 @@
 
 1732770052 c:\users\felix\desktop\gh\arkanot\include\cancha.h
 
-1733194032 c:\users\felix\desktop\gh\arkanot\include\obstaculo.h
+1733252650 c:\users\felix\desktop\gh\arkanot\include\obstaculo.h
 	<vector>
+	"Niveles.h"
 
-1733189153 c:\users\felix\desktop\gh\arkanot\include\logica.h
+1733272572 c:\users\felix\desktop\gh\arkanot\include\logica.h
 	"Pelota.h"
 	"Barra.h"
 	"Obstaculo.h"
@@ -92,7 +94,7 @@
 	<iostream>
 	<windows.h>
 
-1733190340 source:c:\users\felix\desktop\gh\arkanot\src\cancha.cpp
+1733266510 source:c:\users\felix\desktop\gh\arkanot\src\cancha.cpp
 	"Cancha.h"
 	<iostream>
 
@@ -103,17 +105,17 @@
 
 1732768952 c:\users\felix\desktop\gh\arkanot\include\inputs.h
 
-1733190395 source:c:\users\felix\desktop\gh\arkanot\src\juego.cpp
+1733272031 source:c:\users\felix\desktop\gh\arkanot\src\juego.cpp
 	"Juego.h"
 	<iostream>
 	<conio.h>
 
-1733193179 source:c:\users\felix\desktop\gh\arkanot\src\logica.cpp
+1733272155 source:c:\users\felix\desktop\gh\arkanot\src\logica.cpp
 	"Logica.h"
 	<iostream>
 	<windows.h>
 
-1733194363 source:c:\users\felix\desktop\gh\arkanot\src\obstaculo.cpp
+1733254608 source:c:\users\felix\desktop\gh\arkanot\src\obstaculo.cpp
 	"Obstaculo.h"
 	<iostream>
 	<windows.h>
@@ -122,4 +124,13 @@
 	"Pelota.h"
 	<iostream>
 	<windows.h>
+
+1733270908 c:\users\felix\desktop\gh\arkanot\include\juegomanager.h
+	"EstadoJuego.h"
+	"Juego.h"
+
+1733254528 c:\users\felix\desktop\gh\arkanot\include\estadojuego.h
+
+1733197214 c:\users\felix\desktop\gh\arkanot\include\niveles.h
+	<vector>
 

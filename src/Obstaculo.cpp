@@ -2,28 +2,31 @@
 #include <iostream>
 #include <windows.h>
 
-Obstaculo::Obstaculo(unsigned int filas, unsigned int columnas, unsigned int ancho)
-    : filas(filas), columnas(columnas), ancho(ancho) {
+Obstaculo::Obstaculo(unsigned int ancho) : ancho(ancho) {}
 
-    grilla.resize(this->filas, std::vector<int>(columnas));
-
-    this->inicializarObstaculos();
-}
-
-void Obstaculo::inicializarObstaculos()
+void Obstaculo::inicializarObstaculos(std::vector<std::vector<unsigned int>> nivel)
 {
-    for (int i = 0; i < this->filas; i++) {
-        for (int j = 0; j < this->columnas; j++) {
-            this->grilla[i][j] = rand() % 4; // Random strength (0 = no obstacle, 1-3 = obstacle strength)
+    this->grilla = nivel;
+
+    this->filas = nivel.size();
+    this->columnas = nivel[0].size();
+
+    grilla.resize(this->filas, std::vector<unsigned int>(this->columnas));
+
+    for (unsigned int i = 0; i < this->filas; i++) {
+        for (unsigned int j = 0; j < this->columnas; j++) {
+            if (this->grilla[i][j] == 1) {
+                this->grilla[i][j] = rand() % 4; // Random strength (0 = no obstacle, 1-3 = obstacle strength)
+            }
         }
     }
 }
 
 bool Obstaculo::checkColision(int pelotaX, int pelotaY)
 {
-    for(int i = 0; i < this->filas; i++)
+    for(unsigned int i = 0; i < this->filas; i++)
     {
-        for(int j = 0; j < this->columnas; j++)
+        for(unsigned int j = 0; j < this->columnas; j++)
         {
             if(this->grilla[i][j] > 0) // If obstacle present
             {
@@ -47,14 +50,14 @@ bool Obstaculo::checkColision(int pelotaX, int pelotaY)
 
 void Obstaculo::dibujar(void)
 {
-    for (int i = 0; i < this->filas; i++) {
-        for (int j = 0; j < this->columnas; j++) {
+    for (unsigned int i = 0; i < this->filas; i++) {
+        for (unsigned int j = 0; j < this->columnas; j++) {
             if (grilla[i][j] > 0) { // If there is an obstacle
                 int inicioObsX = j * this->ancho;
                 int obsY = i + 1;
 
                 HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
-                for (int k = 0; k < this->ancho; k++) {
+                for (unsigned int k = 0; k < this->ancho; k++) {
                     COORD dwPos;
                     dwPos.X = inicioObsX + k;
                     dwPos.Y= obsY;
@@ -71,4 +74,19 @@ void Obstaculo::dibujar(void)
             }
         }
     }
+}
+
+bool Obstaculo::checkNivelCompleo() // Checks if every position of the vector is 0 (no obstacle)
+{
+    for (unsigned int i = 0; i < this->filas; i++)
+    {
+        for (unsigned int j = 0; j < this->columnas; j++)
+        {
+            if(this->grilla[i][j] > 0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }

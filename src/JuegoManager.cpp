@@ -83,8 +83,10 @@ void JuegoManager::jugar()
 }
 
 // Level handler
-void JuegoManager::inicializarNivel() {
-    switch (this->nivelActual) {
+void JuegoManager::inicializarNivel()
+{
+    switch (this->nivelActual)
+    {
         case 1:
             this->juego.obstaculos.inicializarObstaculos(niveles.nivel1()); // Sends a template of obstacle distribution (check Niveles niveles.nivel1())
             break;
@@ -203,10 +205,13 @@ void JuegoManager::cambiarEstado(EstadoJuego nuevoEstado)
 void JuegoManager::resetValores()
 {
     this->nivelActual = 1;
-    this->juego.puntaje = 0;
+
+    this->juego = Juego();
+
+    /*this->juego.puntaje = 0;
     this->juego.record = 0;
     this->juego.vidas = 3;
     this->juego.barra.reiniciar();
-    this->juego.pelota.reiniciar();
+    this->juego.pelota.reiniciar();*/
 }
 

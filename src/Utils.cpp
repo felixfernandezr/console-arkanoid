@@ -31,6 +31,44 @@ void Utils::cuentaRegresivaRecursi(unsigned int inicio)
     cuentaRegresivaRecursi(inicio - 1); // Recursive call with counter decreased by 1
 }
 
+#include "Utils.h"
+
+void Utils::cargarConfiguracion(const std::string& filepath, std::map<std::string, int>& settings)
+{
+    std::ifstream file(filepath);
+    if (!file) {
+        std::cerr << "Error: Configuration file not found!" << std::endl;
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.empty() || line[0] == '#') continue; // Skip comments and empty lines
+        std::istringstream ss(line);
+        std::string key;
+        int value;
+        if (std::getline(ss, key, '=') && ss >> value) {
+            settings[key] = value;
+        }
+    }
+}
+
+void Utils::mostrarArchivo(const std::string& filepath)
+{
+    std::ifstream file(filepath);
+    if (!file) {
+        std::cerr << "Error: File not found!" << std::endl;
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+    std::cout.flush();
+}
+
+
 
 
 

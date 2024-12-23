@@ -1,14 +1,19 @@
 #include "Juego.h"
 #include <iostream>
 #include <conio.h>
+#include <map>
 #include "Utils.h"
 
 // Constructor
-Juego::Juego(): barra(40), obstaculos(4), finDelJuego(false) // Initialize with Bar in axis x=40 and Obstacles width = 4
+Juego::Juego(): barra(40), obstaculos(4) // Initialize with Bar in axis x=40 and Obstacles width = 4
 {
     this->puntaje = 0; // Score and record = 0
     this->record = 0;
     this->vidas = 3;
+    this->finDelJuego = false;
+    //system("cls");
+    this->funcionConstructor();
+    //system("pause");
 }
 
 void Juego::juegoLoop()
@@ -120,8 +125,34 @@ void Juego::funcionSalirRecursi()
         funcionSalirRecursi(); // Recursive call if user presses other key
 }
 
+void Juego::funcionConstructor()
+{
+    std::map<std::string, int> config;
+    Utils::cargarConfiguracion("assets/config.txt", config);
+
+    loadConfig(config);
+}
+
+void Juego::loadConfig(std::map<std::string, int>& config)
+{
+    int confPuntaje;
+    int confRecord;
+    int confVidas;
+
+    if (config.find("puntaje_inicial") != config.end()) {
+        confPuntaje = config.at("puntaje_inicial");
+    }
+    if (config.find("record_inicial") != config.end()) {
+        confRecord = config.at("record_inicial");
+    }
+    if (config.find("vidas") != config.end()) {
+        confVidas = config.at("vidas");
+        this->vidas = confVidas;
+    }
 
 
+    std::cout << "this->vidas: " << this->vidas << "     confVidas: " << confVidas << std::endl;
+}
 
 
 

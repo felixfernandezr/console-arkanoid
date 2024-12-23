@@ -1,6 +1,8 @@
 #ifndef JUEGO_H_INCLUDED
 #define JUEGO_H_INCLUDED
 
+#include <map>
+
 #include "Pelota.h"
 #include "Barra.h"
 #include "Cancha.h"
@@ -25,8 +27,11 @@ class Juego
         bool finDelJuego;
 
         void juegoLoop(void);
+        void funcionConstructor();
         void funcionPausaRecursi(void);
         void funcionSalirRecursi(void);
+
+        void loadConfig(std::map<std::string, int>& config);
 };
 
 #endif // JUEGO_H_INCLUDED

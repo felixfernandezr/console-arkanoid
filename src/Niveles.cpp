@@ -11,8 +11,8 @@ std::vector<std::vector<unsigned int>> Niveles::nivel1() // All functions return
     this->plantilla.resize(2, std::vector<unsigned int>(15));
 
     this->plantilla = {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0},
+        {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0}
     };
     /*{0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0},
         {1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1}*/

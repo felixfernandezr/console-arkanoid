@@ -1,0 +1,5 @@
+# Configuration for Pong Game
+puntaje_inicial=0
+record_inicial=0
+vidas=5
+winning_score=10

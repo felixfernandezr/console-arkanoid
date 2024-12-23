@@ -7,7 +7,7 @@ Barra::Barra(unsigned int posX)
 {
     this->posicion = Dupla<unsigned int>(posX, 24);
     this->largo = 8;
-    this->posInit = posX;
+    this->posInit = this->posicion;
 }
 
 // Bar movement
@@ -55,5 +55,5 @@ void Barra::dibujar(void)
 
 void Barra::reiniciar()
 {
-    this->posicion = Dupla<unsigned int>(posInit, 24);
+    this->posicion = this->posInit;
 }

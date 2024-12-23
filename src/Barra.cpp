@@ -5,9 +5,9 @@
 // Constructor initializes bar X,Y position and width
 Barra::Barra(unsigned int posX)
 {
-    this->posicion[0] = posX;
-    this->posicion[1] = 24;
+    this->posicion = Dupla<unsigned int>(posX, 24);
     this->largo = 8;
+    this->posInit = posX;
 }
 
 // Bar movement
@@ -51,4 +51,9 @@ void Barra::dibujar(void)
         SetConsoleCursorPosition(hcon,dwPos);
         std::cout << '#';
     }
+}
+
+void Barra::reiniciar()
+{
+    this->posicion = Dupla<unsigned int>(posInit, 24);
 }

@@ -14,6 +14,7 @@ class JuegoManager {
         void mostrarGameOver(void);
         void mostrarPantallaFin(void);
         void mostrarCreditos(void);
+        void mostrarPantallaExit(void);
         void cambiarEstado(EstadoJuego nuevoEstado);
         void resetValores(void);
 

@@ -8,6 +8,8 @@ enum class EstadoJuego {
     GameOver,
     NivelCompleto,
     FinDelJuego,
+    Creditos,
+    Exit,
 };
 
 #endif // ESTADOJUEGO_H_INCLUDED

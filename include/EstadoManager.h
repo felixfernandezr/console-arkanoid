@@ -10,6 +10,7 @@ class EstadoManager
         void cambiarEstado(EstadoJuego nuevoEstado);
         EstadoJuego getEstadoActual();
 
+    private:
         EstadoJuego estadoActual;
 };
 

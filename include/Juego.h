@@ -7,6 +7,7 @@
 #include "Obstaculo.h"
 #include "Logica.h"
 #include "Niveles.h"
+#include "EstadoManager.h"
 
 class Juego
 {
@@ -20,10 +21,12 @@ class Juego
         Niveles niveles;
         unsigned int puntaje;
         unsigned int record;
+        unsigned int vidas;
         bool finDelJuego;
 
-        void juegoLoop();
-        void inputHandler(char input);
+        void juegoLoop(void);
+        void funcionPausaRecursi(void);
+        void funcionSalirRecursi(void);
 };
 
 #endif // JUEGO_H_INCLUDED

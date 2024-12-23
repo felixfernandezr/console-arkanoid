@@ -1,10 +1,11 @@
 #include "Logica.h"
 #include <iostream>
-#include <windows.h>
+
+#include "Utils.h"
 
 Logica::Logica() {}
 
-bool Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record)
+bool Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record, unsigned int* vidas)
 {
     // Checking for obstacle collision
     if(obstaculos->checkColision(pelota->posicion[0], pelota->posicion[1])) // Sending ball x,y using a duple Dupla (check Pelota.h)
@@ -38,8 +39,18 @@ bool Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, un
         }
     }
 
+    // If ball does not hit bar
+    if(pelota->posicion[1]==27)
+    {
+        *vidas = *vidas - 1;
+        *puntaje = 0;
+        if(*vidas > 0)
+            Utils::cuentaRegresivaRecursi(3);
+        pelota->reiniciar();
+    }
+
     // If ball Y position is more than bar Y position (24) or Level is Completed. End loop
-    if((pelota->posicion[1]==27) || (obstaculos->checkNivelCompleto()))
+    if((*vidas < 1) || (obstaculos->checkNivelCompleto()))
     {
         return true; // Ending function with true
     }

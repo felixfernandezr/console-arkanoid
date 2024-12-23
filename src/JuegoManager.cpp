@@ -3,6 +3,7 @@
 #include <conio.h>
 
 #include "Juego.h"
+#include "Utils.h"
 
 // Class constructor
 JuegoManager::JuegoManager() : nivelActual(1) // Setting level to first
@@ -16,56 +17,67 @@ void JuegoManager::jugar()
 {
     while(!this->gameOver) // Done while gameOver is false
     {
-        switch(this->estadoActual)
+        try
         {
-            case EstadoJuego::MenuInico:
-                this->mostrarMenuInicio(); // call to "ui" function
-                this->resetValores(); // reset level and score values to default
-                this->cambiarEstado(EstadoJuego::Play);
-                break;
-            case EstadoJuego::Play:
-                    /*system("cls");
-                    std::cout << "pre nivelActual: " << nivelActual << std::endl;
-                    system("pause");*/
+            switch(this->estadoActual)
+            {
+                case EstadoJuego::Play:
+                    this->inicializarNivel(); // Level handling
+                    this->juego.juegoLoop(); // Game-loop
+                    this->nivelActual++; // Level raise
+                    this->juego.pelota.reiniciar(); // Ball position reset
 
-                this->inicializarNivel(); // Level handling
-                this->juego.juegoLoop(); // Game-loop
-                this->juego.pelota.reiniciar(); // Ball position reset
-                this->nivelActual++; // Level raise
+                    if(this->nivelActual < 5 && this->juego.vidas > 0) // Compares to 5 because nivelActual is raised before if statement
+                    {
+                        this->cambiarEstado(EstadoJuego::NivelCompleto);
+                    }
+                    else if(this->juego.vidas == 0)
+                    {
+                        this->resetValores();
+                        this->cambiarEstado(EstadoJuego::GameOver);
+                    }
+                    else
+                    {
+                        //this->resetValores();
+                        this->cambiarEstado(EstadoJuego::FinDelJuego);
+                    }
+                    break;
 
-                if(this->nivelActual < 5) // Compares to 5 because nivelActual is raised before if statement
-                {
-                    this->cambiarEstado(EstadoJuego::NivelCompleto);
-                }
-                else {
-                    this->cambiarEstado(EstadoJuego::FinDelJuego);
-                }
-                /*system("cls");
-                std::cout << "post nivelActual: " << nivelActual << std::endl;
-                system("pause");*/
+                case EstadoJuego::MenuInico:
+                    this->mostrarMenuInicio(); // call to "ui" function
+                    break;
 
-                break;
-            case EstadoJuego::NivelCompleto:
-                    /*system("cls");
-                    std::cout << "EstadoJuego::NivelCompleto" << std::endl;
-                    system("pause");*/
-                this->mostrarNivelCompleto();
-                this->cambiarEstado(EstadoJuego::Play);
-                break;
-            case EstadoJuego::GameOver:
-                    /*system("cls");
-                    std::cout << "EstadoJuego::GameOver" << std::endl;
-                    system("pause");*/
-                this->mostrarGameOver(); // Show game over "ui"
-                this->cambiarEstado(EstadoJuego::MenuInico);
-                //this->gameOver = true; // End game-manager loop and exit program
-                break;
-            case EstadoJuego::FinDelJuego:
-                this->mostrarPantallaFin(); // Show end screen "ui"
-                this->mostrarCreditos(); // Show game credits
-                this->cambiarEstado(EstadoJuego::MenuInico);
-                //this->gameOver = true;// End game-manager loop and exit program
-                break;
+                case EstadoJuego::NivelCompleto:
+                    this->mostrarNivelCompleto();
+                    this->cambiarEstado(EstadoJuego::Play);
+                    break;
+
+                case EstadoJuego::GameOver:
+                    this->mostrarGameOver(); // Show game over "ui"
+                    this->cambiarEstado(EstadoJuego::MenuInico);
+                    break;
+
+                case EstadoJuego::FinDelJuego:
+                    this->mostrarPantallaFin(); // Show end screen "ui"
+                    this->mostrarCreditos(); // Show game credits
+                    this->resetValores();
+                    this->cambiarEstado(EstadoJuego::MenuInico);
+                    break;
+
+                case EstadoJuego::Creditos:
+                    this->mostrarCreditos();
+                    this->cambiarEstado(EstadoJuego::MenuInico);
+                    break;
+
+                case EstadoJuego::Exit:
+                    this->mostrarPantallaExit(); // If user presses 'y' gameOver is set to true and ends program,
+                    this->cambiarEstado(EstadoJuego::MenuInico); // Back to main menu
+                    break;
+            }
+        }
+        catch (const std::exception& e)
+        {
+            this->cambiarEstado(EstadoJuego::MenuInico);
         }
     }
 }
@@ -74,28 +86,16 @@ void JuegoManager::jugar()
 void JuegoManager::inicializarNivel() {
     switch (this->nivelActual) {
         case 1:
-                /*system("cls");
-                std::cout << "case 1" << std::endl;
-                system("pause");*/
             this->juego.obstaculos.inicializarObstaculos(niveles.nivel1()); // Sends a template of obstacle distribution (check Niveles niveles.nivel1())
             break;
         case 2:
-                /*system("cls");
-                std::cout << "case 2" << std::endl;
-                system("pause");*/
             this->juego.obstaculos.inicializarObstaculos(niveles.nivel2()); // This templates only have 1s and 0s
             break;
         case 3:
-                /*system("cls");
-                std::cout << "case 3" << std::endl;
-                system("pause");*/
             this->juego.obstaculos.inicializarObstaculos(niveles.nivel3()); // Then randomized in Obstaculos obstaculos.inicializarObstaculos()
             break;
         default:
-                /*system("cls");
-                std::cout << "default" << std::endl;
-                system("pause");*/
-            cambiarEstado(EstadoJuego::GameOver); // No more levels. When level > 3 this catches game end
+            this->cambiarEstado(EstadoJuego::GameOver); // No more levels. When level > 3 this catches game end.
             break;
     }
 }
@@ -104,11 +104,37 @@ void JuegoManager::inicializarNivel() {
 void JuegoManager::mostrarMenuInicio()
 {
     system("cls");
-    std::cout << "Welcome to the Game!" << std::endl;
-    std::cout << "Press Any Key to Start" << std::endl;
+    while (true) {
+        // Clear the screen
+        std::cout << "\033[2J\033[1;1H";
 
-    // Wait for user input
-    _getch();
+        // Display menu options
+        std::cout << "====================\n";
+        std::cout << "  Welcome to Arkanot  \n";
+        std::cout << "====================\n";
+        std::cout << "1. Start Game\n";
+        std::cout << "2. Show Credits\n";
+        std::cout << "3. Exit Game\n";
+        std::cout << "Select an option: ";
+
+        // Wait for user input
+        char choice = _getch();
+        switch (choice) {
+            case '1':
+                this->resetValores();
+                cambiarEstado(EstadoJuego::Play);
+                return; // Exit the menu function
+            case '2':
+                cambiarEstado(EstadoJuego::Creditos);
+                return;
+            case '3':
+                cambiarEstado(EstadoJuego::Exit);
+                return;
+            default:
+                std::cout << "\nInvalid option. Please try again.\n";
+                Utils::sleepSegundos(1);
+        }
+    }
 }
 
 void JuegoManager::mostrarNivelCompleto()
@@ -155,6 +181,19 @@ void JuegoManager::mostrarCreditos()
     _getch();
 }
 
+void JuegoManager::mostrarPantallaExit()
+{
+    system("cls");
+    std::cout << "You Are About to Exit the Game. Are You Sure?" << std::endl;
+    std::cout << "Press 'y' to Confirm or Any Key and Go to Main Menu." << std::endl;
+
+    char tecla = _getch();
+    if (tecla == 'y')
+    {
+        this->gameOver = true;
+    }
+}
+
 // Change game state
 void JuegoManager::cambiarEstado(EstadoJuego nuevoEstado)
 {
@@ -166,5 +205,8 @@ void JuegoManager::resetValores()
     this->nivelActual = 1;
     this->juego.puntaje = 0;
     this->juego.record = 0;
+    this->juego.vidas = 3;
+    this->juego.barra.reiniciar();
+    this->juego.pelota.reiniciar();
 }
 

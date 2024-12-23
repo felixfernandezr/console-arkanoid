@@ -4,7 +4,7 @@
 Cancha::Cancha()
 {
     this->alto = 24;
-    this->ancho = 60;
+    this->ancho = 59;
 }
 
 void Cancha::delinear()

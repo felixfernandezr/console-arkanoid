@@ -1,18 +1,19 @@
 #ifndef OBSTACULO_H_INCLUDED
 #define OBSTACULO_H_INCLUDED
 
+#include <vector>
+
 class Obstaculo
 {
     public:
         Obstaculo(unsigned int filas, unsigned int columnas, unsigned int ancho);
 
     private:
-        static const int MAX_FILA = 10;
-        static const int MAX_COL = 15;
         unsigned int filas;
         unsigned int columnas;
-        int grilla[MAX_FILA][MAX_COL];
         unsigned int ancho;
+
+        std::vector<std::vector<int>> grilla;
 
         void inicializarObstaculos(void);
 

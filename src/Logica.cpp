@@ -7,7 +7,7 @@ Logica::Logica() {}
 void Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, unsigned int* puntaje, unsigned int* record)
 {
     // Checking for obstacle collision
-    if(obstaculos->checkColision(pelota->posX, pelota->posY))
+    if(obstaculos->checkColision(pelota->posicion[0], pelota->posicion[1]))
     {
         pelota->rebotarY();
         *puntaje += 10;
@@ -20,26 +20,26 @@ void Logica::juegoUpdate(Pelota* pelota, Barra* barra, Obstaculo* obstaculos, un
 
     // Colission Logic
     // Walls
-    if(pelota->posY==0)
+    if(pelota->posicion[1]==0)
     {
         pelota->rebotarY();
     }
-    if(pelota->posX==0 || pelota->posX==59)
+    if(pelota->posicion[0]==0 || pelota->posicion[0]==59)
     {
         pelota->rebotarX();
     }
 
     // Bar
-    if(pelota->posY==barra->posY)
+    if(pelota->posicion[1]==barra->posicion[1])
     {
-        if(pelota->posX >= barra->posX && pelota->posX < barra->posX + barra->largo)
+        if(pelota->posicion[0] >= barra->posicion[0] && pelota->posicion[0] < barra->posicion[0] + barra->largo)
         {
             pelota->rebotarY();
         }
     }
 
     // Game Over
-    if(pelota->posY==27)
+    if(pelota->posicion[1]==27)
     {
         pelota->reiniciar();
         *puntaje = 0;

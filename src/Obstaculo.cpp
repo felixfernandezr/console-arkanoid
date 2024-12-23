@@ -3,10 +3,9 @@
 #include <windows.h>
 
 Obstaculo::Obstaculo(unsigned int filas, unsigned int columnas, unsigned int ancho)
-{
-    this->filas = filas;
-    this->columnas = columnas;
-    this->ancho = ancho;
+    : filas(filas), columnas(columnas), ancho(ancho) {
+
+    grilla.resize(this->filas, std::vector<int>(columnas));
 
     this->inicializarObstaculos();
 }
@@ -56,7 +55,6 @@ void Obstaculo::dibujar(void)
 
                 HANDLE hcon = GetStdHandle(STD_OUTPUT_HANDLE);
                 for (int k = 0; k < this->ancho; k++) {
-                    //COORD dwPos = {static_cast<SHORT>(inicioObsX + k), static_cast<SHORT>(obsY)};
                     COORD dwPos;
                     dwPos.X = inicioObsX + k;
                     dwPos.Y= obsY;

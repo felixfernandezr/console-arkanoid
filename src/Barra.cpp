@@ -4,16 +4,16 @@
 
 Barra::Barra(unsigned int posX)
 {
-    this->posX = posX;
-    this->posY = 24;
+    this->posicion[0] = posX;
+    this->posicion[1] = 24;
     this->largo = 8;
 }
 
 void Barra::mover(int direccion)
 {
-    if(direccion==-1 && this->posX >1 || direccion==1 && this->posX < 60 - this->largo)
+    if(direccion==-1 && this->posicion[0] >1 || direccion==1 && this->posicion[0] < 60 - this->largo)
     {
-        this->posX += direccion;
+        this->posicion[0] += direccion;
     }
 }
 void Barra::moverIzquierda(void)
@@ -43,8 +43,8 @@ void Barra::dibujar(void)
         HANDLE hcon;
         hcon = GetStdHandle(STD_OUTPUT_HANDLE);
         COORD dwPos;
-        dwPos.X = this->posX + i;
-        dwPos.Y= this->posY;
+        dwPos.X = this->posicion[0] + i;
+        dwPos.Y= this->posicion[1];
         SetConsoleCursorPosition(hcon,dwPos);
         std::cout << '#';
     }

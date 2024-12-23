@@ -4,42 +4,38 @@
 
 Pelota::Pelota()
 {
-    this->posX = 30;
-    this->posY = 15;
-    this->dirX = 1;
-    this->dirY = 1;
+    this->posicion = Dupla<unsigned int>(30, 15);
+    this->direccion = Dupla<int>(1, 1);
 }
 
 void Pelota::mover(void)
 {
-    this->posX += this->dirX;
-    this->posY += this->dirY;
+    this->posicion[0] += this->direccion[0];
+    this->posicion[1] += this->direccion[1];
 }
 
 void Pelota::reiniciar(void)
 {
-    this->posX = 30;
-    this->posY = 15;
-    this->dirX = 1;
-    this->dirY = 1;
+    this->posicion = Dupla<unsigned int>(30, 15);
+    this->direccion = Dupla<int>(1, 1);
 }
 
 void Pelota::rebotarY(void)
 {
-    this->dirY = -this->dirY;
+    this->direccion[1] = -this->direccion[1];
 }
 
 void Pelota::rebotarX(void)
 {
-    this->dirX = -this->dirX;
+    this->direccion[0] = -this->direccion[0];
 }
 void Pelota::dibujar(void)
 {
     HANDLE hcon;
     hcon = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD dwPos;
-    dwPos.X = this->posX;
-    dwPos.Y= this->posY;
+    dwPos.X = this->posicion[0];
+    dwPos.Y= this->posicion[1];
     SetConsoleCursorPosition(hcon,dwPos);
     std::cout << 'O';
 }

@@ -1,13 +1,13 @@
 #ifndef BARRA_H
 #define BARRA_H
 
+#include "Dupla.h"
 
 class Barra
 {
     public:
         Barra(unsigned int posX);
-        unsigned int posX;
-        unsigned int posY;
+        Dupla<unsigned int> posicion; // Duple template class for position (posX, posY)
         unsigned int largo;
 
         void mover(int direccion);
